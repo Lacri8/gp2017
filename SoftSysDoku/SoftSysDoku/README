@@ -1,0 +1,198 @@
+Dokumentation
+zur Fertigkeitsprüfung
+zur Mathematisch-technischen Softwareentwicklerin /
+zum Mathematisch-technischen Softwareentwickler
+
+LaTeX-Version (Stand: April 2016)
+
+
+Diese Datei enthält folgende Punkte:
+
+  Variablen setzen
+  Compilieren des Dokumentes
+  Erstellen von UML-Klassen-Diagrammen
+  Erstellen von UML-Sequenzdiagrammen
+  Erstellen von Nassi-Shneiderman-Diagrammen
+  Einbinden von Graphiken
+  Einbinden von Testdateien
+  Einbinden von Quellcode
+  Geschützte Dateien
+
+----------------------------------------------------------------
+
+
+Variablen setzen
+================
+
+Einige Teilbereiche der Dokumentation werden über Variablen erstellt
+und miteinander verknüpft. Aus diesem Grund sollten folgende Variablen
+in der Präambel des Dokumentes (in Master.tex - vor "\begin{document}")
+gesetzt werden:
+
+\Autor              - Vor- und Zuname des Prüflings
+\PruefungsNR        - Die Prüfungsnummer, die der Prüfling von der
+                      Industrie und Handelskammer erhalten hat
+\Ausbildungsort     - Betrieb bzw. Institut in dem der Prüfling seine
+                      Ausbildung absolviet hat (zB: Jülich
+		      Supercomputing Centre\\ Forschungszentrum Jülich)
+		      Wenn man möchte, kann hier auch LaTeX-Konform
+		      ein Logo mit einer maximalen Breite von 6cm
+		      eingebunden werden - siehe dazu auch "Einbinden
+		      von Graphiken
+\Programmiersprache - Die Programmiersprache in der die
+                      Fertigkeitsprüfung erstellt wurde
+\Compiler           - Compiler-Name sowie -Version mit der das
+                      Programmierergebnis compiliert wurde
+\Rechner            - Rechner (Hardware) auf dem der Prüfung während
+                      seiner Prüfung gearbeitet hat
+\Betriebssystem     - Das Betriebssystem unter dem gearbeitet wurde
+
+Neben den verpflichtenden Variablen, gibt es noch weitere Variablen,
+die default-mäßig gesetzt sind und nicht zwingend verändert werden
+müssen:
+
+\Thema         - Stichpunkt oder Kurzbescheibung der Prüfungsaufgabe
+                 (zB.: Verkehrssimulation), die auf der Titelseite
+                 bzw. in der Fußzeile erscheint
+\MW{<m|w>}     - Im gesamten Dokument wird als Berufsbezeichnung
+                 "Mathematisch-technischer Softwareentwickler"
+                 genutzt. Sollte ein weiblicher Prüfling auch die
+                 weibliche Berufsbezeichnung bevorzugen, so kann sie
+                 mit Hilfe der \MW-Variablen die Berufsbezeichnung
+                 ändern
+		 \MW{w} => Softwareentwicklerin
+		 \MW{m} => Softwareentwickler
+
+\PruefungsJahr - Als Prüfungsjahr wird das aktuelle Jahr genommen.
+                 Sollte eine andere Jahreszahl gewünscht sein, so kann
+		 diese über die Varaiblen \PruefungsJahr verändert
+		 werden.
+
+
+
+Compilieren des Dokumentes
+==========================
+
+Die Hauptdatei "Master.tex" läd alle anderen (benötigten) Dateien
+ein. Zum setzen des Dokumentes sollte man also immer nur diese
+"Master.tex"-Datei (mit "pdflatex Master.tex" bzw. "latex Master.tex")
+compilieren.
+
+
+
+Erstellen von UML-Klassen-Diagrammen
+====================================
+Zur Erstellung von UML-Klassen-Diagrammen direkt in LaTeX kann das
+Paket 'pgf-umlcd' genutzt werden. Mit der Option '[umlcd]' bei der
+Dokumentklasse werden alle benötigten Pakete eingebunden. Eine
+Dokumentation mit Beispiel-Klassendiagrammen findet man unter:
+   http://mirrors.ctan.org/graphics/pgf/contrib/pgf-umlcd/pgf-umlcd-manual.pdf
+
+
+
+Erstellen von UML-Sequenzdiagrammen
+===================================
+Zur Erstellung von UML-Sequenzdiagrammen direkt in LaTeX kann das
+Paket 'pgf-umlsd' genutzt werden. Mit der Option '[umlsd]' bei der
+Dokumentklassen werden alle benötigten Pakete eingebunden. Eine
+Dokumentation mit Beispiel-Sequenzdiagrammen findet man unter:
+   http://mirrors.ctan.org/graphics/pgf/contrib/pgf-umlsd/pgf-umlsd-manual.pdf
+
+
+
+Erstellen von Nassi-Shneiderman-Diagrammen
+==========================================
+Zur Erstellung von Nassi-Shneiderman-Diagrammen direkt in LaTeX kann
+das Paket 'struktex' genutzt werden. Mit der Option '[struktex]' bei der
+Dokumentklasse wird dieses Pakete eingebunden. Eine Dokumentation mit
+Beispiel-Nassi-Shneiderman-Diagrammen findet man unter:
+   http://mirrors.ctan.org/macros/latex/contrib/struktex/struktex.de.pdf
+
+
+
+Einbinden von Graphiken
+=======================
+
+Für Bilder und Abbildungen sollte das Paket "graphicx" genutzt.
+Beispiel: 
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Graphics/bild}
+    \caption{Hauptprogramm}
+    \label{hauptprg}
+  \end{figure}
+Erklärung:
+	Bild-Datei: bild.eps (Postscript-Datei) bzw.
+                    bild.pdf (Portable Document Format) bzw.
+                    bild.png (Portable Network Graphic) bzw.
+                    bild.jpg (Joint Photographic Experts Group Format)
+	\includegraphics -> Befehl zum Einbinden der Graphik
+	\caption -> Bildunterschrift
+	\label -> für Querverweise im Text (\ref{hauptprg} bzw. \pageref{...})
+
+Bei der Angabe der Graphik-Datei, sollte auf die Angabe der
+Datei-Endung verzichtet werden. So kann LaTeX selber die Datei mit der
+passenden Endung suchen und einbinden. Auf diese Weise kann man das
+Dokument sowohl mit dem klassischen „latex“ als auch mit „pdflatex“
+kompilieren, ohne jeweils alle Datei-Endungen von „eps“ auf „pdf“ oder
+umgekehrt ändern zu müssen.
+
+
+
+Einbinden von Testdateien
+=========================
+Um die Ein- und Ausgabedateien von Tests direkt mit LaTeX in die Dokumentation
+einzubinden, stellt die Dokumentklasse die Umgebung
+
+  \begin{testbox}[<Überschrift>]
+    <Ein- bzw. Ausgabedaten>
+  \end{testbox}
+  
+sowie den Befehl
+
+  \testboxinc[<maximale Zeilenzahl>]{<Dateiname>}{<Textformatierungen>}   
+
+zur Verfügung. Die benötigten Pakete werden mit der Option '[tests]'
+bei der Dokumentklassen eingebunden.
+
+Zur Abgrenzung der einzelnen Testbeispiele stellt die Dokumentklasse den
+Befehl "\test{}" zur Verfügung. Der Befehl hat ein zwingendes
+Argument, welche die Überschrift des dann folgenden Tests enthält.
+
+Mit dem Befehl "\listofTests" kann eine Übersicht über alle
+eingebundenen Tests (die mit \test{} markiert wurden) erstellt werden.
+
+
+
+Einbinden von Quellcode
+=======================
+Um den Quellcode direkt mit LaTeX in die Dokumentation einzubinden,
+kann das Paket 'listings' genutzt werden. Mit der Option '[sourc]'
+bei der Dokumentklassen werden alle benötigten Pakete
+eingebunden. Eine Dokumentation mit Beispielen findet man unter:
+   http://mirrors.ctan.org/macros/latex/contrib/listings/listings.pdf
+
+Default-mäßig ist der Style des Highlightings gesetzt (schwarz-weiß /
+bunt ist unnötig). Um jedoch das richtig Highlighting für die
+entsprechende Sprache zu laden, muss mit dem Befehl
+   \lstset{language=<Programmiersprache>}
+die richtige Programmiersprache geladen werden.
+
+Zur Abgrenzung der einzelnen Dateien stellt die Dokumentklasse den
+Befehl "\sourcecode{}" zur Verfügung. Der Befehl hat ein zwingendes
+Argument, welche die Überschrift / den Dateinamen des dann folgenden
+Quellcodes enthält.
+
+Mit dem Befehl "\listofSources" kann eine Übersicht über alle
+eingebundenen Dateien (die mit \sourcecode{} markiert wurden) erstellt
+werden.
+
+
+
+Geschützte Dateien
+==================
+
+Das beiden Kapitel "Anhang C: Entwicklungsumgebung" wird komplett über
+Variablen erzeugt. Aus diesem Grund muss die Datei
+"Entwicklungsumgebung.tex" nicht verändert werden. Damit dies auch
+nicht versehentlich passiert, ist diese Datei schreibgeschützt.

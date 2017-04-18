@@ -1,0 +1,55 @@
+\documentclass{softsys}
+
+%\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[pdftex]{graphicx}   
+\usepackage{listings}
+\usepackage{float}
+%\usepackage{struktex}
+%\usepackage{pgf-uml}
+\usepackage{tikz}
+%\usepackage{pgfplots}
+%\usepackage[backend=biber,style=alphabetic,autocite=inline]{biblatex}
+%\usepackage[babel,german=quotes]{csquotes}
+%\usepackage{url}
+
+\Autor{Nina Grebing}
+\PruefungsNR{20504}
+\Ausbildungsort{Forschungszentrum Jülich GmbH}% \newline Institut für Bio- und Geowissenschaften 1}
+\Programmiersprache{Java}
+\Compiler{Javac Version 1.8.0\_121}
+\Rechner{Intel Core i5 mit 3,3 GHz und 4GB RAM}
+\Betriebssystem{Windows 7 Professional Service Pack 1}
+
+
+%Mit includeonly koennen einzelne Kapitel seperat compiliert werden.
+%Beispiel: \includeonly{Aufgabenanalyse} 
+%         -> Das Dokument besteht nur aus dem Kapitel "Aufgabenanalyse" 
+%\includeonly{}
+
+\lstset{breaklines=true,frame=single,language=SQL,captionpos=b}
+
+\begin{document}
+
+  \maketitle
+  \pagenumbering{Roman} 
+  \tableofcontents
+  \cleardoublepage
+  
+  \pagenumbering{arabic}
+  \Ginclude{Aufgabenanalyse}
+  \Ginclude{Verfahrensbeschreibung}
+  \Ginclude{Programmbeschreibung}
+  \Ginclude{Testdokumentation}
+  \Ginclude{Zusammenfassung}
+
+	
+  \begin{appendix}
+    \Ginclude{Abweichungen}
+    \Ginclude{Benutzeranleitung}
+    \Ginclude{Entwicklungsumgebung}
+    \Ginclude{Quellcode}
+  \end{appendix}
+
+\end{document}
